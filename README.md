@@ -31,6 +31,22 @@ When the `char`s are ASCII, use size 26 for `az` or `AZ`, 128 for full ASCII, 25
 
 ## Q4
 
+- When working with multiple sorted arrays, you might be able to save both memory and time by
+just simulating a merge operation with pointers and setting a breaking condition
+such that what you are left with is the answer.
+
+## Q7
+
+- When working with the individual digits of a number, modulo and integer division are your
+best friends.
+- If possible, instead of keeping track of what you do (multiplier, etc.),
+just cut down the number itself to keep track (integer division helps with this).
+
+## Q20
+
+
+
+## Q26
 
 
 
