@@ -44,9 +44,13 @@ just cut down the number itself to keep track (integer division helps with this)
 
 ## Q20
 
-
+- Don't access the top of a stack when it's empty, because "calling `back` on an empty container causes UB".
+- When processing something "outward to inward", stacks can help.
 
 ## Q26
+
+- The two pointer technique is commonly used such that one is the "slow-runner" and the other is the "fast-runner".
+
 
 
 
