@@ -47,6 +47,10 @@ just cut down the number itself to keep track (integer division helps with this)
 - Don't access the top of a stack when it's empty, because "calling `back` on an empty container causes UB".
 - When processing something "outward to inward", stacks can help.
 
+## Q21
+
+- When merging two linked lists, if you consume one list entirely, you can just have the node at that moment point to the list that still has elements left. In other words, there's no need to construct the remaining result list by hand.
+
 ## Q26
 
 - The two pointer technique is commonly used such that one is the "slow-runner" and the other is the "fast-runner".
