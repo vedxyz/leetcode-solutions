@@ -67,6 +67,10 @@ to the reversed half.
 
 - When merging two linked lists, if you consume one list entirely, you can just have the node at that moment point to the list that still has elements left. In other words, there's no need to construct the remaining result list by hand.
 
+## Q22
+
+**Need to add notes here.**
+
 ## Q26
 
 - The two pointer technique is commonly used such that one is the "slow-runner" and the other is the "fast-runner".
@@ -75,5 +79,35 @@ to the reversed half.
 
 Too easy, nothing to add.
 
+## Q32
 
+- Dynamic Programming:
+  - In array questions, it's possible to do DP by using another array of the same size.
+	  You might be able to store information about a certain element by examining patterns.
+		This may include using the DP results of the previous elements.
+  - Having a base case helps to get the DP array rolling.
+- Stacks:
+  - Indices are pushed onto an array, and popped once it's verified that that index marks a valid
+	  substring. Thus, when an element is popped, the top element is one before the largest verified substring index at that time.
+	- By pushing invalid indices when the stack becomes empty, we make sure there's always a "one before valid index" element.
+- It's sometimes possible to accomplish wizardry by running an algorithm forwards then backwards.
+
+## Q56
+
+- In brute-force-like algorithms, it may be helpful to sort the vector and process it afterwards.
+
+## Q121
+
+- One-pass algorithm by keeping track of minimum value at each iteration.
+- Doing comparisons to determine the optimized value itself rather than variables that *should* result in
+  the most optimal value is useful at times. For example, when looking for max profit,
+	do comparisons on the potential max profit itself rather than trying to find a max value from
+	which to subtract a min value. Doing final comparisons according to what is already known at that moment
+	helps to simplify the flow of the code as well. In other words, work with `maxProfit` and `minValue`
+	instead of `maxValue` and `minValue`.
+
+## Q938
+
+- BST (Binary Search Tree) lets you discard paths that do not meet constraints.
+- DFS uses either a stack or recursion, and BFS uses queues.
 
