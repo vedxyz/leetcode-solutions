@@ -42,6 +42,22 @@ best friends.
 - If possible, instead of keeping track of what you do (multiplier, etc.),
 just cut down the number itself to keep track (integer division helps with this).
 
+## Q9
+
+- When trying to validate a palindrome, rather than checking through iteration,
+you can reverse the input into another variable and check if `input == reverse`.
+- Sometimes, constraints may prevent reversing the entire input. In that case,
+you can reverse only one half of the input and check if the remaining input is equal
+to the reversed half.
+
+## Q13
+
+- Basic understanding of roman numerals: Each symbol is converted to its integer equivalent and summed. Symbols like I/X/C become negative when positioned right before V/X or L/C or D/M respectively.
+
+## Q14
+
+- Nothing much to add. Just remember to consider edge cases.
+
 ## Q20
 
 - Don't access the top of a stack when it's empty, because "calling `back` on an empty container causes UB".
