@@ -55,6 +55,9 @@ just cut down the number itself to keep track (integer division helps with this)
 
 - The two pointer technique is commonly used such that one is the "slow-runner" and the other is the "fast-runner".
 
+## Q27
+
+Too easy, nothing to add.
 
 
 
