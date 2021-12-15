@@ -88,8 +88,8 @@ Too easy, nothing to add.
   - Having a base case helps to get the DP array rolling.
 - Stacks:
   - Indices are pushed onto an array, and popped once it's verified that that index marks a valid
-	  substring. Thus, when an element is popped, the top element is one before the largest verified substring index at that time.
-	- By pushing invalid indices when the stack becomes empty, we make sure there's always a "one before valid index" element.
+    substring. Thus, when an element is popped, the top element is one before the largest verified substring index at that time.
+  - By pushing invalid indices when the stack becomes empty, we make sure there's always a "one before valid index" element.
 - It's sometimes possible to accomplish wizardry by running an algorithm forwards then backwards.
 
 ## Q56
@@ -105,6 +105,12 @@ Too easy, nothing to add.
 	which to subtract a min value. Doing final comparisons according to what is already known at that moment
 	helps to simplify the flow of the code as well. In other words, work with `maxProfit` and `minValue`
 	instead of `maxValue` and `minValue`.
+
+## Q359
+
+- Using a hashmap to keep track of messages is simple, but over time there is no
+  garbage collection on the memory. Instead you can use a queue+set combination
+	to wipe all messages that are at the front of the queue with a timestamp difference over the constraints. The set serves as the hashmap check in this case.
 
 ## Q938
 
