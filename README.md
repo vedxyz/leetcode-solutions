@@ -112,6 +112,15 @@ Too easy, nothing to add.
   garbage collection on the memory. Instead you can use a queue+set combination
 	to wipe all messages that are at the front of the queue with a timestamp difference over the constraints. The set serves as the hashmap check in this case.
 
+## Q394
+
+- Recursive:
+  - Mostly straightforward, just beware of your loop conditionals.
+    This approach takes away the complexity of managing your own stacks.
+- Iterative:
+  - Solving a recursive problem with iteration usually involves stacks,
+    but beware that you may even need to manage multiple stacks for different things.
+
 ## Q938
 
 - BST (Binary Search Tree) lets you discard paths that do not meet constraints.
