@@ -114,12 +114,11 @@ Too easy, nothing to add.
 
 ## Q394
 
-- Recursive:
-  - Mostly straightforward, just beware of your loop conditionals.
-    This approach takes away the complexity of managing your own stacks.
-- Iterative:
-  - Solving a recursive problem with iteration usually involves stacks,
-    but beware that you may even need to manage multiple stacks for different things.
+- You can convert `char`s to `int` by doing `charValue - '0'`.
+- Recursive: Mostly straightforward, just beware of your loop conditionals.
+  This approach takes away the complexity of managing your own stacks.
+- Iterative: Solving a recursive problem with iteration usually involves stacks,
+  but beware that you may even need to manage multiple stacks for different things.
 
 ## Q938
 
