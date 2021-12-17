@@ -81,7 +81,7 @@ Too easy, nothing to add.
 
 ## Q28
 
-- String matching is optimally done with KMP, but that's a bit of an advanced topic.
+- String matching is optimally done with KMP or Rabin Karp, but that's a bit of an advanced topic.
 - Sometimes it's just better to deal with some edge cases before the main logic.
 - For questions where you only need to find the very first instance of something,
   you can return as soon as you find it, and in fact have the default return statement
