@@ -79,6 +79,19 @@ to the reversed half.
 
 Too easy, nothing to add.
 
+## Q28
+
+- String matching is optimally done with KMP, but that's a bit of an advanced topic.
+- Sometimes it's just better to deal with some edge cases before the main logic.
+- For questions where you only need to find the very first instance of something,
+  you can return as soon as you find it, and in fact have the default return statement
+	return some constant like `-1`.
+- You can move the variable declaration statement of a `for` block to the outside of the loop
+  so you get to keep it after the `for` block.
+- In cases like substring matching where there needs to be a minimum amount of indices left
+  to fit in, you can set loop conditionals such that the impossible indices are not iterated over.
+	See: `lPtr != haystack.size() - needle.size() + 1` (+1 depending on how the range is to be used).
+
 ## Q32
 
 - Dynamic Programming:
