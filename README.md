@@ -101,8 +101,8 @@ Too easy, nothing to add.
   - Having a base case helps to get the DP array rolling.
 - Stacks:
   - Indices are pushed onto an array, and popped once it's verified that that index marks a valid
-	  substring. Thus, when an element is popped, the top element is one before the largest verified substring index at that time.
-	- By pushing invalid indices when the stack becomes empty, we make sure there's always a "one before valid index" element.
+    substring. Thus, when an element is popped, the top element is one before the largest verified substring index at that time.
+  - By pushing invalid indices when the stack becomes empty, we make sure there's always a "one before valid index" element.
 - It's sometimes possible to accomplish wizardry by running an algorithm forwards then backwards.
 
 ## Q56
@@ -118,6 +118,35 @@ Too easy, nothing to add.
 	which to subtract a min value. Doing final comparisons according to what is already known at that moment
 	helps to simplify the flow of the code as well. In other words, work with `maxProfit` and `minValue`
 	instead of `maxValue` and `minValue`.
+
+## Q200
+
+- In certain questions, you can invalidate (destroy) adjacent data to eliminate recounting the same data.
+- Rather than destroying the data, it's a better practice to either make a copy or keep track
+  of the data that would have been destroyed by putting it in a hashmap etc.
+	Additional conditional checks against the "visited" data would be added in this case.
+- Both BFS and DFS can be used in a 2D array.
+- When you need to access an array at a certain index, check that the index is within the array.
+  It's easier to write the conditional once you've written the array expression.
+- The index checks mentioned above are sometimes greatly simplified if you can reduce the 
+  check down to a single point. Instead of checking multiple indices by hand before calling 
+	a function, instead have the function begin by checking if the input index is valid.
+	Doing so reduces the check down to a single location.
+- **Read the solution with Union Find.**
+
+## Q359
+
+- Using a hashmap to keep track of messages is simple, but over time there is no
+  garbage collection on the memory. Instead you can use a queue+set combination
+	to wipe all messages that are at the front of the queue with a timestamp difference over the constraints. The set serves as the hashmap check in this case.
+
+## Q394
+
+- You can convert `char`s to `int` by doing `charValue - '0'`.
+- Recursive: Mostly straightforward, just beware of your loop conditionals.
+  This approach takes away the complexity of managing your own stacks.
+- Iterative: Solving a recursive problem with iteration usually involves stacks,
+  but beware that you may even need to manage multiple stacks for different things.
 
 ## Q938
 
