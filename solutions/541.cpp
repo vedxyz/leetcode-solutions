@@ -21,5 +21,17 @@ public:
         
         return string(chars.begin(), chars.end());
     }
+    
+    // Or a bit more concise
+    string reverseStr(string s, int k) {
+        vector<char> chars(s.begin(), s.end());
+        
+        for (int i = 0; i < s.size(); i += 2 * k) {
+            int end = min(i + k - 1, (int) s.size() - 1);
+            reverseString(chars, i, end);
+        }
+        
+        return string(chars.begin(), chars.end());
+    }
 };
 
