@@ -374,6 +374,12 @@ Too easy, nothing to add.
 
 **Need to add notes here.**
 
+### Q680
+
+- If you're validating something, and you're allowed to remove an element at most,
+  you can simply feed the subsequence after the deletion into the function,
+  to solve it via recursion.
+
 ### Q696
 
 **Need to add notes here.**
