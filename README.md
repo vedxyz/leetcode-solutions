@@ -271,6 +271,12 @@ Too easy, nothing to add.
 
 **Need to add notes here.**
 
+### Q234
+
+- To solve a palindrome linked list question in space `O(1)`, reverse the second half of the list and verify.
+- To find the middle of the list, use slow & fast running pointers; if the 2nd pointer moves 2 nodes, and the
+  1st pointer moves 1 node; by the time the fast one reaches the end, the slow one will be at the middle.
+
 ### Q237
 
 **Need to add notes here.**
