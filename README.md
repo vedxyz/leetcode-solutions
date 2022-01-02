@@ -490,31 +490,118 @@ A logarithmic time complexity often indicates that the elements in question get 
 Be very careful with what variables you use in a Big O notation, using `N` for several unrelated quantities is a common mistake.
 The amount of elements in an array and the length of each string in that array cannot both be represented by `N`.
 
+When code runs in a fashion like `1 + 2 + ... + n`, the runtime is still `O(N^2)` because `(N(N+1))/2 -> N^2`.
+
 ### The Essential Data Structures & Algorithms
 
 #### Data Structures
 
 ##### Arrays - `vector`
 
+- The techniques with arrays almost always apply to strings as well.
+- Many languages do not have resizable arrays natively, and instead use library classes like `vector`.
+  These provide dynamic resizing, and may multiply their size when they are internally full.
+- Be careful with string concatenation as it can result in many internal copies.
+  However, since C++ has a mutable `string` class, the resize behavior is similar to that of a `vector`.
+- Rabin-Karp substring search is the technique to check if two substrings have the same hash,
+  ideally using a rolling hash function.
+- `std::vector`;
+  - Constructors: `vector()`, `vector(count, value)`, `vector(size)`, `vector(itr_begin, itr_end)`, `vector(vector)`, `vector({init_list})`.
+  - `operator[index]` returns reference in `O(1)`.
+  - `front` and `back` return references to first and last elements respectively.
+  - `begin`/`end` and `rbegin`/`rend` return iterators in respective directions.
+  - `empty` and `size` for element count.
+  - `clear` (`O(N)`), `erase(itr)` or `erase(itr_begin, itr_end)` (`O(N)`), `push_back` (amortized `O(1)`), `pop_back` (`O(1)`).
+  - `insert(itr, value)` for insertion before `itr`, `insert(itr, itr_begin, itr_end)` inserts range before `itr`,
+    `insert(itr, {init_list})` inserts list before `itr`. Runtime is linear in the distance to the end of array.
+- `std::vector<bool>` is a special case, as it is implemented for use as a dynamic bitset.
+  It has a hash function, unlike other `vector` types, and has a member function `flip` to flip all bits.
+- `std::string`;
+  - Constructors: `string()` and `string(count, char)` (initialized with `count` amount of `char`).
+  - `operator[index]` returns reference to `char`.
+  - Same as `vector`; `front`, `back`, `begin`/etc, `empty`, `size`, `clear`, `pop_back`.
+  - `operator+=` to append `char` or `string`.
+  - `insert` has lots of overloads.
+  - `erase(i_begin, count)` or `erase(itr)` or `erase(itr_begin, itr_end)`.
+  - `substr(i_begin, count = end)` returns substring `[i_begin, i_begin+count)`
+  - `find(string/char, i_begin)` returns index to first match, searches from `i_begin`.
+  - `to_string` non-member function for numeric values.
+
 ##### Linked Lists - `list` & `ListNode`
+
+- Lists don't provide random access, but they do allow inserting/removing items at the head in constant time.
+- Lists may be singly or doubly linked.
 
 ##### Hash Tables/Sets - `unordered_map`/`unordered_set`/etc
 
+- Hash tables map keys to values for efficient lookup. This is usually done via hashing functions.
+  The hash of the key is computed, and the hash is mapped to an index on the internal array.
+  This internal array consists of linked lists, which hold the items whose hash is the same.
+  If the hash collisions are high, the lookup runtime may increase to linear.
+- Hash tables may also be implemented using balanced binary search trees (also called red-black tree).
+  This makes most runtimes a `O(logN)`, but the space used potentially decreases.
+- `std::unordered_map<Key, Value>`;
+  - Constructors: `unordered_map()`, `unordered_map(itr_begin, itr_end)`, `unordered_map({init_list})`.
+    The initializers need to be of form `{{key, value}, ...}`.
+  - `begin`/`end` return `iterator`s.
+  - `empty`/`size`/`clear` are supported.
+  - `erase(key)` or `erase(itr)`.
+  - `operator[key]` returns reference to value. If no such `key` exists, it's inserted.
+  - `count(key)` returns 1 or 0 as this container does not support duplicate keys.
+  - `find(key)` returns `iterator` if found, otherwise `end`.
+  - `iterator` points to `pair<Key, Value>`.
+- `std::unordered_set<Key>`;
+  - Mostly similar to `unordered_map`.
+  - Insertion is done via `insert(key)`.
+- There are also `set` and `map`, which are implemented with trees, and are sorted.
+- There are also `multi` versions of these, which allow duplicate keys.
+
 ##### Stacks/Queues - `stack`/`queue`
+
+- Stacks are often useful in implementing a recursive function iteratively.
+- Queues are good for implementing BFS and caches.
 
 ##### Heaps - `priority_queue`
 
+- Priority queues are implemented with heaps and are great for finding the max/min of a thing.
+- A heap is actually a binary tree that has a specific order among nodes.
+  For example, in a min-heap, each node is smaller than its children.
+
 ##### Trees - `TreeNode`
+
+- Not all trees are binary trees.
+- A node is called a "leaf" if it has no children.
+- A binary search tree is a tree where a specific order is kept:
+  `all left descendents <= n < all right descendents`.
+- Not all trees are balanced.
+- Binary Tree Traversal:
+  - **In-Order Traversal:** The visits are done in order of `left branch -> current node -> right branch`.
+    When used on a BST, the nodes are in ascending order.
+  - **Pre-Order Traversal:** The visits are done in order of `current node -> left branch -> right branch`.
+  - **Post-Order Traversal:** The visits are done in order of `left branch -> right branch -> current node`.
+- Tries (Prefix Trees) are n-ary trees in whose nodes are the characters to a word.
+  The root connects to the first character of a string, which is laid out node to node until its end is marked in some way,
+  such as with a "null" character or special termination node.
 
 #### Concepts (Algorithms, etc.)
 
 ##### Breadth-First Search (BFS)
 
+- Implemented with queues.
+- Starts at the root, each neighbour is explored before moving onto their children.
+
 ##### Depth-First Search (DFS)
+
+- Implemented either via recursion or stacks.
+- Starts at the root, explores each branch completely before moving onto the next branch.
 
 ##### Binary Search
 
 ##### Merge Sort / Quick Sort
+
+- Merge Sort (`O(NlogN)`) keeps dividing the array in half until there are only two elements to be merged,
+  and merges them in the correct order.
+- Quick Sort (`O(NlogN)` average, `O(N^2)` worst case)
 
 ##### Bit Manipulation
 
