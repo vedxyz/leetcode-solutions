@@ -263,6 +263,12 @@ Too easy, nothing to add.
 
 **Need to add notes here.**
 
+### Q225
+
+- You can keep rotating a single queue to get a stack.
+  You would arrive at this solution by writing down the real state of the queue
+  and also the ideal stack representation, and compare to see how you might accomplish it.
+
 ### Q217
 
 **Need to add notes here.**
