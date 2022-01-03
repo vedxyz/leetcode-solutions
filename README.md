@@ -190,6 +190,13 @@ Too easy, nothing to add.
 
 **Need to add notes here.**
 
+### Q114
+
+- Dummy nodes help with trees as well. You can do flattening in `O(1)` space by appending DFS nodes to a dummy node.
+- When doing DFS, be **very** careful with the order in which you push the branches to the stack.
+  Pushing the left branch *before* the right branch means you explore the right branch **first**.
+  In other words, if you want to go left to right, push right then left.
+
 ### Q121
 
 - One-pass algorithm by keeping track of minimum value at each iteration.
