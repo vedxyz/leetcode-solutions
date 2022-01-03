@@ -463,6 +463,24 @@ This section includes thoughts from both the book and experiences I've read arou
   find the base cases `{a}` and `{ab, ba}` then realize that for permutations of `abc` you just need to insert a `c` into it.
 - It's a good idea to have some genuine questions prepared for the interviewer.
 - Don't forget to go over the items on your resume as it's possible to be asked about them in depth.
+- Recommended questions from Google to think about:
+  - How do you work best, both as an individual and as part of a team?
+  - What challenges have you faced at school or at work and how did you overcome them?
+  - Which of your skills or experiences would be assets in the role and why?
+  - What is something you learned that made everything that came after easier?
+  - Have more of your achievements come as a result of solitary effort or teamwork?
+  - What do you enjoy more, solving problems or pushing the discussion forward?
+  - What is the most rewarding job you've ever had? Why?
+  - Describe the best team you ever worked with. What made that experience stand out?
+- Things that get me excited about Google:
+  - The flexibility to work the way you want
+  - Financial peace of mind
+  - The chance to be surrounded by Googlers
+  - The room for growth
+  - All kinds of perks to enjoy
+  - To be able to work on significant projects
+  - To experience new things & diversity
+  - There's clearly so much more on the inside that I don't know yet
 
 ### Big O Notation
 
@@ -560,12 +578,30 @@ When code runs in a fashion like `1 + 2 + ... + n`, the runtime is still `O(N^2)
 
 - Stacks are often useful in implementing a recursive function iteratively.
 - Queues are good for implementing BFS and caches.
+- `std::stack<Value>`;
+  - `top` returns reference to top item.
+  - `size`/`empty` are supported.
+  - `push` adds new items, has runtime of internal container.
+  - `pop` removes top item, has runtime of internal container.
+- `std::queue<Value>`;
+  - `front`/`back` return references to first/last item pushed respectively.
+  - `size`/`empty` are supported.
+  - `push` adds new items, has runtime of internal container.
+  - `pop` removes front item, has runtime of internal container.
 
 ##### Heaps - `priority_queue`
 
 - Priority queues are implemented with heaps and are great for finding the max/min of a thing.
 - A heap is actually a binary tree that has a specific order among nodes.
   For example, in a min-heap, each node is smaller than its children.
+- `std::priority_queue<Value, Container=vector<Value>, Compare=less<Value>>`;
+  - Is a max-heap by default, with the largest element at the top.
+    Can be made min-heap with `Compare -> greater<Value>`.
+    Can also have custom comparison by creating a new class with an overloaded `operator()`.
+  - `top` returns top item of the heap tree, value depends on priority criteria.
+  - `size`/`empty` are supported.
+  - `push` adds new items, in correct order, so has logarithmic runtime and of internal container.
+  - `pop` removes top item, then corrects order, so has logarithmic runtime and of internal container.
 
 ##### Trees - `TreeNode`
 
@@ -597,18 +633,40 @@ When code runs in a fashion like `1 + 2 + ... + n`, the runtime is still `O(N^2)
 
 ##### Binary Search
 
+- Look at the middle, determine whether to move left or right next,
+  keep going until the middle is the element we need.
+- Has runtime `O(logN)`, since it keeps halving.
+
 ##### Merge Sort / Quick Sort
 
 - Merge Sort (`O(NlogN)`) keeps dividing the array in half until there are only two elements to be merged,
   and merges them in the correct order.
-- Quick Sort (`O(NlogN)` average, `O(N^2)` worst case)
+- Quick Sort (`O(NlogN)` average, `O(N^2)` worst case) picks a random element and partitions the array
+  such that it is eventually sorted.
+- Radix Sort (`O(kN)` where `k` is the number of passes) works nicely in cases where finite integers are involved.
 
 ##### Bit Manipulation
 
+- XOR is useful for addition, AND for carry, shifts for bitmasking and such.
+  And bitmasking is great. It's probably preferable to use `uint32_t` if possible.
+
 ##### Dynamic Programming
+
+- Usually done by keeping track of previous subproblems within an array,
+  and it's useful to map the indices to subproblems that could aid with the current subproblem,
+  and the values behind those indices to be the result of that previous subproblem.
+  For example, for combination sum, the indices could be a certain sum and the values could
+  be the number of ways to reach that sum, and so on.
 
 ##### Backtracking
 
+- Usually involves recursion and invalidating a path once you're done with it.
+
 ##### Greedy Algorithms
 
-##### NP Problems
+##### NP-complete Problems
+
+- P problems have solutions in polynomial time.
+- NP problems have solutions that can be verified in polynomial time.
+- NP-complete problems are those that can have other NP problems reduced to them.
+- It is unknown whether NP-complete problems can be solved in polynomial time.
