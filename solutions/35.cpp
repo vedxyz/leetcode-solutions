@@ -5,18 +5,15 @@ public:
         
         int low = 0, high = nums.size();
         while (low != high) {
-            int mid = (high + low) / 2;
+            int mid = low + (high - low) / 2;
             
-            if (nums[mid] <= target && (mid + 1 == nums.size() || nums[mid + 1] > target))
+            if (nums[mid] <= target && (mid + 1 == nums.size() || target < nums[mid + 1]))
                 return nums[mid] == target ? mid : mid + 1;
             
             if (nums[mid] < target)
                 low = mid + 1;
-            
-            if (nums[mid] > target)
-                high = mid;
+            else high = mid;
         }
         return -1;
     }
 };
-

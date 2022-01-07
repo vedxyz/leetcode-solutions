@@ -72,7 +72,8 @@ to a one-pass. Lookup is made constant in this way.
 
 ### Q19
 
-**Need to add notes here.**
+- Again, dummy nodes help but be careful picking `dummy->next` instead of `dummy.next`.
+- Queues with a fixed size help you keep track of the `n`th most recent element of something.
 
 ### Q20
 
@@ -86,7 +87,17 @@ to a one-pass. Lookup is made constant in this way.
 
 ### Q22
 
-**Need to add notes here.**
+- One way to approach a recursive backtrack problem is to make sure each recursive call constructs a *valid* subresult,
+  and let it run until it hits a base case of *what we are looking for*. If there are two **independent** recursive calls within a recursive,
+  the first call is going to exhaust all possibilities, and only then will the second call be run for the first time.
+- This kind of recursion is VERY similar to DFS. We exhaust the first option we have, then exhaust the second option.
+  Once the second option is exhausted, we backtrack, use a second option instead of a first one, and exhaust that.
+  Then just repeat until all possibilities are exhausted.
+
+### Q23
+
+- When reducing a list of something to a single item, you can iteratively combine the first and last items while reducing the size by
+  `size -= size / 2` each time, so you are eventually left with a single item.
 
 ### Q26
 
@@ -124,7 +135,7 @@ Too easy, nothing to add.
 
 ### Q35
 
-**Need to add notes here.**
+- You always need to think of binary search when a sorted array is mentioned.
 
 ### Q39
 
@@ -366,6 +377,14 @@ Too easy, nothing to add.
 **Need to add notes here.**
 
 ### Q414
+
+**Need to add notes here.**
+
+### Q415
+
+**Need to add notes here.**
+
+### Q423
 
 **Need to add notes here.**
 

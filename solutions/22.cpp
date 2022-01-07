@@ -1,25 +1,26 @@
 class Solution {
+    void genParenthesisRecursive(vector<string>& result, string& current, int open, int close, int max) {
+        if (current.size() == max * 2) {
+            result.push_back(current);
+            return;
+        }
+        
+        if (open < max) {
+            current += '(';
+            genParenthesisRecursive(result, current, open + 1, close, max);
+            current.pop_back();
+        }
+        if (close < open) {
+            current += ')';
+            genParenthesisRecursive(result, current, open, close + 1, max);
+            current.pop_back();
+        }
+    }
 public:
-    // Bad solution. Need to do better.
     vector<string> generateParenthesis(int n) {
-        typedef unordered_map<string, int> gen_map;
-        vector<string> result;
-        gen_map mp;
-        mp["()"] = 1;
-        
-        for (int c = 0; c != 8; c++)
-            for (gen_map::iterator i = mp.begin(); i != mp.end(); i++)
-                for (gen_map::iterator j = mp.begin(); j != mp.end(); j++)
-                    if (i->second + j->second <= n) {
-                        mp[i->first + j->first] = i->second + j->second;
-                        mp[j->first + i->first] = i->second + j->second;
-                        mp["(" + i->first + ")"] = i->second + 1;
-                    }
-        
-        for (gen_map::iterator i = mp.begin(); i != mp.end(); i++)
-            if (i->second == n)
-                result.push_back(i->first);
-        
+        vector<string> result; 
+        string current = "";
+        genParenthesisRecursive(result, current, 0, 0, n);
         return result;
     }
 };
