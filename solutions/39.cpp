@@ -1,4 +1,28 @@
-class Solution {
+class BacktrackSolution {
+    void backtrackDFS(vector<vector<int>>& combs, vector<int>& comb, vector<int>& candidates, int target, int sum = 0, int last = 0) {
+        if (sum > target)
+            return;
+        else if (sum == target) {
+            combs.push_back(comb);
+            return;
+        }
+        
+        for (int i = last; i != candidates.size(); i++) {
+            comb.push_back(candidates[i]);
+            backtrackDFS(combs, comb, candidates, target, sum + candidates[i], i);
+            comb.pop_back();
+        }
+    }
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> combs;
+        vector<int> comb;
+        backtrackDFS(combs, comb, candidates, target);
+        return combs;
+    }
+};
+
+class DynProgSolution {
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<vector<int>>> combs(target + 1);
@@ -21,4 +45,3 @@ public:
         return combs[target];
     }
 };
-

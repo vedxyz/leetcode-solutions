@@ -13,13 +13,13 @@ Additionally, I do note some implementation tips for myself, such as dummy heads
 These are my notes for the LeetCode questions I've solved, with respective code under `solutions/*.cpp`.
 All solutions are in **C++**, as it has a phenomenal standard library.
 
-### Q1
+### Q1 - Two Sum
 
 - As with many situations, it's possible to sacrifice memory in exchange for superior time complexity.
 - Storing each element of a vector into a map where the values are indices reduces the algorithm
 to a one-pass. Lookup is made constant in this way.
 
-### Q2
+### Q2 - Add Two Numbers
 
 - When working with linked lists, it's sometimes useful to have a dummy node at the beginning.
   Once you need to return the result, just return `dummy->next`. This technique may simplify loops.
@@ -29,7 +29,7 @@ to a one-pass. Lookup is made constant in this way.
   in which case, you would need to take into account whether the conditionals should include
   the carry beside the two digits.
 
-### Q3
+### Q3 - Longest Substring Without Repeating Characters
 
 - The *sliding window* technique is great for one-pass solutions.
   You should consider the rules of what your left and right pointers mean.
@@ -40,20 +40,20 @@ to a one-pass. Lookup is made constant in this way.
   that maps easily to integer-based indexing, such as `char`.
   When the `char`s are ASCII, use size 26 for `az` or `AZ`, 128 for full ASCII, 256 for extended ASCII.
 
-### Q4
+### Q4 - Median of Two Sorted Arrays
 
 - When working with multiple sorted arrays, you might be able to save both memory and time by
   just simulating a merge operation with pointers and setting a breaking condition
   such that what you are left with is the answer.
 
-### Q7
+### Q7 - Reverse Integer
 
 - When working with the individual digits of a number, modulo and integer division are your
   best friends.
 - If possible, instead of keeping track of what you do (multiplier, etc.),
   just cut down the number itself to keep track (integer division helps with this).
 
-### Q9
+### Q9 - Palindrome Number
 
 - When trying to validate a palindrome, rather than checking through iteration,
   you can reverse the input into another variable and check if `input == reverse`.
@@ -61,31 +61,31 @@ to a one-pass. Lookup is made constant in this way.
   you can reverse only one half of the input and check if the remaining input is equal
   to the reversed half.
 
-### Q13
+### Q13 - Roman to Integer
 
 - Basic understanding of roman numerals: Each symbol is converted to its integer equivalent and summed.
   Symbols like I/X/C become negative when positioned right before V/X or L/C or D/M respectively.
 
-### Q14
+### Q14 - Longest Common Prefix
 
 - Nothing much to add. Just remember to consider edge cases.
 
-### Q19
+### Q19 - Remove Nth Node From End of List
 
 - Again, dummy nodes help but be careful picking `dummy->next` instead of `dummy.next`.
 - Queues with a fixed size help you keep track of the `n`th most recent element of something.
 
-### Q20
+### Q20 - Valid Parentheses
 
 - Don't access the top of a stack when it's empty, because "calling `back` on an empty container causes UB".
 - When processing something "outward to inward", stacks can help.
 
-### Q21
+### Q21 - Merge Two Sorted Lists
 
 - When merging two linked lists, if you consume one list entirely, you can just have the node at that moment point to
   the list that still has elements left. In other words, there's no need to construct the remaining result list by hand.
 
-### Q22
+### Q22 - Generate Parentheses
 
 - One way to approach a recursive backtrack problem is to make sure each recursive call constructs a *valid* subresult,
   and let it run until it hits a base case of *what we are looking for*. If there are two **independent** recursive calls within a recursive,
@@ -94,20 +94,20 @@ to a one-pass. Lookup is made constant in this way.
   Once the second option is exhausted, we backtrack, use a second option instead of a first one, and exhaust that.
   Then just repeat until all possibilities are exhausted.
 
-### Q23
+### Q23 - Merge k Sorted Lists
 
 - When reducing a list of something to a single item, you can iteratively combine the first and last items while reducing the size by
   `size -= size / 2` each time, so you are eventually left with a single item.
 
-### Q26
+### Q26 - Remove Duplicates from Sorted Array
 
 - The two pointer technique is commonly used such that one is the "slow-runner" and the other is the "fast-runner".
 
-### Q27
+### Q27 - Remove Element
 
 Too easy, nothing to add.
 
-### Q28
+### Q28 - Implement strStr()
 
 - String matching is optimally done with KMP or Rabin Karp, but that's a bit of an advanced topic.
 - Sometimes it's just better to deal with some edge cases before the main logic.
@@ -120,7 +120,7 @@ Too easy, nothing to add.
   to fit in, you can set loop conditionals such that the impossible indices are not iterated over.
   See: `lPtr != haystack.size() - needle.size() + 1` (+1 depending on how the range is to be used).
 
-### Q32
+### Q32 - Longest Valid Parentheses
 
 - Dynamic Programming:
   - In array questions, it's possible to do DP by using another array of the same size.
@@ -133,82 +133,95 @@ Too easy, nothing to add.
   - By pushing invalid indices when the stack becomes empty, we make sure there's always a "one before valid index" element.
 - It's sometimes possible to accomplish wizardry by running an algorithm forwards then backwards.
 
-### Q35
+### Q35 - Search Insert Position
 
 - You always need to think of binary search when a sorted array is mentioned.
 
-### Q39
+### Q39 - Combination Sum
+
+- Recursive backtrack solutions have a general pattern of;
+  - Lay out a base case to return and *backtrack* on invalid elements,
+    and also to record sought results if obtained.
+  - Have either a loop or some kind of conditional to go over your **possible options for the next attempt**.
+    The new option is added here, then a recursive call is made with the new state, and then the new option is popped away.
+- It again helps to think of the process in terms of call stack and DFS.
+- Within the options loop of the recursive function, consider where to start your iteration from each time.
+  For example, when going over number candidates, you don't need to iterate over previous candidates on the list, but you should
+  iterate the current item once more at least.
+
+### Q46 - Permutations
 
 **Need to add notes here.**
 
-### Q46
+### Q53 - Maximum Subarray
 
 **Need to add notes here.**
 
-### Q53
-
-**Need to add notes here.**
-
-### Q56
+### Q56 - Merge Intervals
 
 - In brute-force-like algorithms, it may be helpful to sort the vector and process it afterwards.
+- **Add more notes here?**
 
-### Q66
-
-**Need to add notes here.**
-
-### Q70
+### Q66 - Plus One
 
 **Need to add notes here.**
 
-### Q79
+### Q70 - Climbing Stairs
 
 **Need to add notes here.**
 
-### Q88
+### Q79 - Word Search
 
 **Need to add notes here.**
 
-### Q92
+### Q88 - Merge Sorted Array
 
 **Need to add notes here.**
 
-### Q94
+### Q92 - Reverse Linked List II
 
 **Need to add notes here.**
 
-### Q102
+### Q94 - Binary Tree Inorder Traversal
 
 **Need to add notes here.**
 
-### Q104
+### Q101 - Symmetric Tree
 
 **Need to add notes here.**
 
-### Q107
+### Q102 - Binary Tree Level Order Traversal
 
 **Need to add notes here.**
 
-### Q111
+### Q104 - Maximum Depth of Binary Tree
 
 **Need to add notes here.**
 
-### Q112
+### Q107 - Binary Tree Level Order Traversal II
 
 **Need to add notes here.**
 
-### Q113
+### Q111 - Minimum Depth of Binary Tree
 
 **Need to add notes here.**
 
-### Q114
+### Q112 - Path Sum
+
+**Need to add notes here.**
+
+### Q113 - Path Sum II
+
+**Need to add notes here.**
+
+### Q114 - Flatten Binary Tree to Linked List
 
 - Dummy nodes help with trees as well. You can do flattening in `O(1)` space by appending DFS nodes to a dummy node.
 - When doing DFS, be **very** careful with the order in which you push the branches to the stack.
   Pushing the left branch *before* the right branch means you explore the right branch **first**.
   In other words, if you want to go left to right, push right then left.
 
-### Q121
+### Q121 - Best Time to Buy and Sell Stock
 
 - One-pass algorithm by keeping track of minimum value at each iteration.
 - Doing comparisons to determine the optimized value itself rather than variables that *should* result in
@@ -218,39 +231,39 @@ Too easy, nothing to add.
   helps to simplify the flow of the code as well. In other words, work with `maxProfit` and `minValue`
   instead of `maxValue` and `minValue`.
 
-### Q124
+### Q124 - Binary Tree Maximum Path Sum
 
 **Need to add notes here.**
 
-### Q125
+### Q125 - Valid Palindrome
 
 **Need to add notes here.**
 
-### Q136
+### Q136 - Single Number
 
 **Need to add notes here.**
 
-### Q141
+### Q141 - Linked List Cycle
 
 **Need to add notes here.**
 
-### Q143
+### Q143 - Reorder List
 
 **Need to add notes here.**
 
-### Q146
+### Q146 - LRU Cache
 
 **Need to add notes here.**
 
-### Q190
+### Q190 - Reverse Bits
 
 **Need to add notes here.**
 
-### Q191
+### Q191 - Number of 1 Bits
 
 **Need to add notes here.**
 
-### Q200
+### Q200 - Number of Islands
 
 - In certain questions, you can invalidate (destroy) adjacent data to eliminate recounting the same data.
 - Rather than destroying the data, it's a better practice to either make a copy or keep track
@@ -265,106 +278,110 @@ Too easy, nothing to add.
   Doing so reduces the check down to a single location.
 - **Read the solution with Union Find.**
 
-### Q202
+### Q202 - Happy Number
 
 **Need to add notes here.**
 
-### Q203
+### Q203 - Remove Linked List Elements
 
 **Need to add notes here.**
 
-### Q206
+### Q206 - Reverse Linked List
 
 **Need to add notes here.**
 
-### Q215
+### Q215 - Kth Largest Element in an Array
 
 **Need to add notes here.**
 
-### Q225
+### Q217 - Contains Duplicate
+
+**Need to add notes here.**
+
+### Q225 - Implement Stack using Queues
 
 - You can keep rotating a single queue to get a stack.
   You would arrive at this solution by writing down the real state of the queue
   and also the ideal stack representation, and compare to see how you might accomplish it.
 
-### Q217
+### Q230 - Kth Smallest Element in a BST
 
 **Need to add notes here.**
 
-### Q230
-
-**Need to add notes here.**
-
-### Q234
+### Q234 - Palindrome Linked List
 
 - To solve a palindrome linked list question in space `O(1)`, reverse the second half of the list and verify.
 - To find the middle of the list, use slow & fast running pointers; if the 2nd pointer moves 2 nodes, and the
   1st pointer moves 1 node; by the time the fast one reaches the end, the slow one will be at the middle.
 
-### Q237
+### Q237 - Delete Node in a Linked List
 
 **Need to add notes here.**
 
-### Q257
+### Q257 - Binary Tree Paths
 
 **Need to add notes here.**
 
-### Q258
+### Q258 - Add Digits
 
 **Need to add notes here.**
 
-### Q268
+### Q268 - Missing Number
 
 **Need to add notes here.**
 
-### Q278
+### Q278 - First Bad Version
 
 **Need to add notes here.**
 
-### Q322
+### Q322 - Coin Change
 
 **Need to add notes here.**
 
-### Q338
+### Q338 - Counting Bits
 
 **Need to add notes here.**
 
-### Q344
+### Q344 - Reverse String
 
 **Need to add notes here.**
 
-### Q345
+### Q345 - Reverse Vowels of a String
 
 **Need to add notes here.**
 
-### Q347
+### Q347 - Top K Frequent Elements
 
 **Need to add notes here.**
 
-### Q359
+### Q359 - Logger Rate Limiter
 
 - Using a hashmap to keep track of messages is simple, but over time there is no
   garbage collection on the memory. Instead you can use a queue+set combination
   to wipe all messages that are at the front of the queue with a timestamp difference over the constraints.
   The set serves as the hashmap check in this case.
 
-### Q369
+### Q366 - Find Leaves of Binary Tree
 
 **Need to add notes here.**
 
-### Q371
+### Q369 - Plus One Linked List
 
 **Need to add notes here.**
 
-### Q387
+### Q371 - Sum of Two Integers
 
 **Need to add notes here.**
 
-### Q389
+### Q387 - First Unique Character in a String
 
 **Need to add notes here.**
 
-### Q394
+### Q389 - Find the Difference
+
+**Need to add notes here.**
+
+### Q394 - Decode String
 
 - You can convert `char`s to `int` by doing `charValue - '0'`.
 - Recursive: Mostly straightforward, just beware of your loop conditionals.
@@ -372,98 +389,114 @@ Too easy, nothing to add.
 - Iterative: Solving a recursive problem with iteration usually involves stacks,
   but beware that you may even need to manage multiple stacks for different things.
 
-### Q412
+### Q412 - Fizz Buzz
 
 **Need to add notes here.**
 
-### Q414
+### Q414 - Third Maximum Number
 
 **Need to add notes here.**
 
-### Q415
+### Q415 - Add Strings
 
 **Need to add notes here.**
 
-### Q423
+### Q423 - Reconstruct Original Digits from English
 
 **Need to add notes here.**
 
-### Q509
+### Q509 - Fibonacci Number
 
 **Need to add notes here.**
 
-### Q540
+### Q528 - Random Pick with Weight
 
 **Need to add notes here.**
 
-### Q541
+### Q540 - Single Element in a Sorted Array
 
 **Need to add notes here.**
 
-### Q557
+### Q541 - Reverse String II
 
 **Need to add notes here.**
 
-### Q559
+### Q557 - Reverse Words in a String III
 
 **Need to add notes here.**
 
-### Q637
+### Q559 - Maximum Depth of N-ary Tree
 
 **Need to add notes here.**
 
-### Q680
+### Q637 - Average of Levels in Binary Tree
+
+**Need to add notes here.**
+
+### Q680 - Valid Palindrome II
 
 - If you're validating something, and you're allowed to remove an element at most,
   you can simply feed the subsequence after the deletion into the function,
   to solve it via recursion.
 
-### Q696
+### Q696 - Count Binary Substrings
 
 **Need to add notes here.**
 
-### Q703
+### Q703 - Kth Largest Element in a Stream
 
 **Need to add notes here.**
 
-### Q876
+### Q746 - Min Cost Climbing Stairs
 
 **Need to add notes here.**
 
-### Q938
+### Q811 - Subdomain Visit Count
+
+**Need to add notes here.**
+
+### Q833 - Find And Replace in String
+
+**Need to add notes here.**
+
+### Q876 - Middle of the Linked List
+
+**Need to add notes here.**
+
+### Q938 - Range Sum of BST
 
 - BST (Binary Search Tree) lets you discard paths that do not meet constraints.
 - DFS uses either a stack or recursion, and BFS uses queues.
 
-### Q989
+### Q989 - Add to Array-Form of Integer
 
 **Need to add notes here.**
 
-### Q1005
+### Q1005 - Maximize Sum Of Array After K Negations
 
 **Need to add notes here.**
 
-### Q1051
+### Q1051 - Height Checker
 
 **Need to add notes here.**
 
-### Q1119
+### Q1119 - Remove Vowels from a String
 
 **Need to add notes here.**
 
-### Q1408
+### Q1408 - String Matching in an Array
 
 **Need to add notes here.**
 
-### Q1985
+### Q1985 - Find the Kth Largest Integer in the Array
 
 **Need to add notes here.**
 
-### Q2095
+### Q2095 - Delete the Middle Node of a Linked List
 
 **Need to add notes here.**
 
-### Q2099
+### Q2099 - Find Subsequence of Length K With the Largest Sum
 
 **Need to add notes here.**
 
@@ -695,6 +728,8 @@ When code runs in a fashion like `1 + 2 + ... + n`, the runtime is still `O(N^2)
 - Usually involves recursion and invalidating a path once you're done with it.
 
 ##### Greedy Algorithms
+
+- Simply go for the naive, *greedy* solution that *may* work.
 
 ##### NP-complete Problems
 
