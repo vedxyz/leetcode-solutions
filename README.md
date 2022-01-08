@@ -151,68 +151,100 @@ Too easy, nothing to add.
 
 ### Q46 - Permutations
 
-**Need to add notes here.**
+- Generating permutations by backtracking works as a DFS where elements are swapped.
+  On each level of the recursion, the current item is swapped with an element on the right.
+  The base case occurs when there are no elements left to swap.
 
 ### Q53 - Maximum Subarray
 
-**Need to add notes here.**
+- Following Kadane's algorithm, you need to discard any current sum that is negative, as it will never contribute positively.
+- To be able to process negative results as well, set the max so `INT_MIN` so that any negative item may still be worth keeping.
 
 ### Q56 - Merge Intervals
 
-- In brute-force-like algorithms, it may be helpful to sort the vector and process it afterwards.
-- **Add more notes here?**
+- In brute-force-like algorithms, it may be helpful to **sort the vector** and process it afterwards.
+- Determine when you are going to add the interval as is, and when you are going to merge.
+  Setting up a conditional for this is easy. Then, determine what you would need to do to merge two intervals.
+  Step by step.
+
+### Q62 - Unique Paths
+
+- Dynamic programming is good for these kinds of counting problems.
+  Each position can only be reached from two adjacent directions, so just sum those and put it in a DP variable.
+- Before adding a lot of code to cover edge cases, consider whether you can adjust your base case to cover those as well.
+
+### Q63 - Unique Paths II
+
+- Implementing obstacles is as simple as forcing their DP sum to be 0.
+- For the first row and column, it's better to do a loop beforehand and determine their values so that you don't have to
+  deal with it as an edge case in the main loop.
 
 ### Q66 - Plus One
 
-**Need to add notes here.**
+- Straightforward grade-school addition. Notice that you don't need to keep going if the carry is 0, as it will never become 1 again.
 
 ### Q70 - Climbing Stairs
 
-**Need to add notes here.**
+- Great fit for DP since the current step depends on the previous two steps.
+  Again, make sure you do a good mapping of the DP indices and values, the rest will come naturally.
+- Can also be solved with recursion, which can be optimized with memoization.
+  As always, you just give it a base case and call the recursion with the necessary increments.
 
 ### Q79 - Word Search
 
-**Need to add notes here.**
+- This follows the usual recursive backtracking pattern where you change a thing, run recursion, change it back.
+  Of course, there needs to be a base case too. In this problem, the value is changed by invalidating the current cell,
+  effectively marking it as visited. The base case is whether the current cell can be part of the word or not.
+- The recursive function is actually called for every cell in the grid through simple iteration.
+- You can either invalidate a cell by changing its content, or add its address to a set of visited coordinates.
+  The latter is slower, but doesn't modify the original grid.
 
 ### Q88 - Merge Sorted Array
 
-**Need to add notes here.**
+- Instead of using extra space to store the merged array, there is a trick to do this in constant space (merge in-place).
+  Use three pointers (2 for the arrays, 1 for where the item will go), and work from the end to the front.
+  This way, no values will be overwritten. In fact, this trick is helpful in any array question where in-place actions are needed.
 
 ### Q92 - Reverse Linked List II
 
-**Need to add notes here.**
+- Nothing tricky other than keeping track of what node is pointing where and a few edge cases.
 
 ### Q94 - Binary Tree Inorder Traversal
 
-**Need to add notes here.**
+- Inorder traversal is very easy with recursion, but doing it iteratively is a bit trickier.
+  For every node, you traverse left and push to stack until you can't anymore.
+  Then pop from the stack, visit the node, move to the right node, repeat.
 
 ### Q101 - Symmetric Tree
 
-**Need to add notes here.**
+- Simple stuff recursively. Iteratively, it works with a BFS-like queue where the elements are `pair`s of supposedly symmetric nodes.
 
 ### Q102 - Binary Tree Level Order Traversal
 
-**Need to add notes here.**
+- Recursion is once again easier. Iterative solution needs BFS where the level is kept track of, perhaps in a `pair` alongside the node.
 
 ### Q104 - Maximum Depth of Binary Tree
 
-**Need to add notes here.**
+- Recursion easy, iteration uses `pair` for depth.
 
 ### Q107 - Binary Tree Level Order Traversal II
 
-**Need to add notes here.**
+- Pretty much the same solution as Q102, except you reverse the result. Keep that in mind I guess.
 
 ### Q111 - Minimum Depth of Binary Tree
 
-**Need to add notes here.**
+- Doable with DFS/BFS/recursion. Note that with BFS, you can keep track of depth/level by using a `for` loop
+  within the `while` loop. If you run the loop as many times as the queue has elements *at the beginning*,
+  you will have gone through all queue items on the current level. Something like `int n = q.size(); for (int i = 0; i < n; i++) {}`.
 
 ### Q112 - Path Sum
 
-**Need to add notes here.**
+- Pretty recursion, or `pair`ed DFS.
 
 ### Q113 - Path Sum II
 
-**Need to add notes here.**
+- Once again, the elegant solution is to use recursive backtracking to add in then pop a node on the path.
+- If insisting on an iterative DFS, you can use `tuple` to keep track of node/sum/path all at once.
 
 ### Q114 - Flatten Binary Tree to Linked List
 
@@ -308,6 +340,10 @@ Too easy, nothing to add.
 
 **Need to add notes here.**
 
+### Q232 - Implement Queue using Stacks
+
+**Need to add notes here.**
+
 ### Q234 - Palindrome Linked List
 
 - To solve a palindrome linked list question in space `O(1)`, reverse the second half of the list and verify.
@@ -370,6 +406,10 @@ Too easy, nothing to add.
 **Need to add notes here.**
 
 ### Q371 - Sum of Two Integers
+
+**Need to add notes here.**
+
+### Q382 - Linked List Random Node
 
 **Need to add notes here.**
 

@@ -1,6 +1,6 @@
 class Solution {
     void backtrack(vector<int>& nums, vector<vector<int>>& permutations, int first) {
-        if (first == nums.size())
+        if (first == nums.size() - 1)
             permutations.push_back(nums);
         
         for (int i = first; i != nums.size(); i++) {

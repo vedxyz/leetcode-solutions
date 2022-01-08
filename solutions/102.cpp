@@ -9,7 +9,25 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
+class RecursiveSolution {
+    void recursion(vector<vector<int>>& levels, TreeNode* node, int level = 0) {
+        if (!node) return;
+        if (levels.size() == level)
+            levels.push_back({});
+        
+        levels[level].push_back(node->val);
+        recursion(levels, node->left, level + 1);
+        recursion(levels, node->right, level + 1);
+    }
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> levels;
+        recursion(levels, root);
+        return levels;
+    }
+};
+
+class IterativeSolution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
         if (!root) return {};
@@ -35,4 +53,3 @@ public:
         return levels;
     }
 };
-
