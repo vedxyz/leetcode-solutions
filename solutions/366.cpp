@@ -9,6 +9,26 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+class RecursiveSolution {
+    int traverseHeight(vector<vector<int>>& leaves, TreeNode* node) {
+        if (!node) return -1;
+        
+        int height = max(traverseHeight(leaves, node->left), traverseHeight(leaves, node->right)) + 1;
+        
+        if (leaves.size() == height)
+            leaves.push_back({});
+        leaves[height].push_back(node->val);
+        
+        return height;
+    }
+public:
+    vector<vector<int>> findLeaves(TreeNode* root) {
+        vector<vector<int>> leaves;
+        traverseHeight(leaves, root);
+        return leaves;
+    }
+};
+
 class DestructiveSolution { // Destroys tree to terminate traversal
     bool isLeaf(TreeNode* node) {
         return !node->left && !node->right;

@@ -11,19 +11,16 @@ public:
     int maxDepth(Node* root) {
         int depth = 0;
         queue<pair<Node*, int>> q;
-        if (root)
-            q.push(pair(root, 1));
+        if (root) q.push(pair(root, 1));
         
         while (!q.empty()) {
             pair<Node*, int> node = q.front();
             q.pop();
             
-            if (depth < node.second)
-                depth = node.second;
+            depth = max(depth, node.second);
             
             for (int i = 0; i != node.first->children.size(); i++)
-                if (node.first->children[i])
-                    q.push(pair(node.first->children[i], node.second + 1));
+                q.push(pair(node.first->children[i], node.second + 1));
         }
         
         return depth;

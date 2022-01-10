@@ -211,7 +211,7 @@ Too easy, nothing to add.
 
 ### Q94 - Binary Tree Inorder Traversal
 
-- Inorder traversal is very easy with recursion, but doing it iteratively is a bit trickier.
+- In-order traversal is very easy with recursion, but doing it iteratively is a bit trickier.
   For every node, you traverse left and push to stack until you can't anymore.
   Then pop from the stack, visit the node, move to the right node, repeat.
 
@@ -265,35 +265,60 @@ Too easy, nothing to add.
 
 ### Q124 - Binary Tree Maximum Path Sum
 
-**Need to add notes here.**
+- This problem has a very concise recursive solution, consisting of multiple little tricks.
+- The function calls itself for its two branches, but discards their value if negative thanks to `max(<possible gain>, 0)`.
+- The return value is the current node plus the maximum of the branches explored: `max(left, right)`, so the path property is kept.
+- The maximum sum is updated through a reference with a distinct expression `node->val + left + right`.
+  This is only valid for the actual sum since the root can bind the two branches together as a single path.
+- As per usual, the max sum is initialized as negative infinity rather than 0, so that max sums that are negative can be found as well.
 
 ### Q125 - Valid Palindrome
 
-**Need to add notes here.**
+- Instead of building a purified string, there is a way to reduce space usage to constant
+  by skipping over non-alphanumeric characters with an inner while loop.
 
 ### Q136 - Single Number
 
-**Need to add notes here.**
+- Hash table, or for constant space, bit manipulation: `a XOR 0 = a` and `a XOR a = 0`, so `a XOR b XOR a = b`.
+  In other words, all the doubles will cancel themselves out to leave the single number behind.
 
 ### Q141 - Linked List Cycle
 
-**Need to add notes here.**
+- There are three approaches to a cycle question:
+  - Prune the visited nodes by destroying/invalidating them, and check to see if you ever reach a visited node.
+  - Use a hashset to store memory addresses etc. and see if you ever revisit a node.
+  - **Floyd's cycle finding algorithm:** Have one slow and one fast pointer, if the fast pointer reaches the end, no cycle.
+    If the fast pointer "catches up" to the slow pointer, there must be a cycle.
+
+### Q142 - Linked List Cycle II
+
+- Floyd's cycle finding algorithm does not actually guarantee the intersection to be at the beginning of the cycle.
+  However, if after finding the intersection, the slow pointer is moved back to the head and both pointers are advanced one by one,
+  the intersection will be guaranteed to be the beginning node of the cycle.
+- Be very careful with what you set your initial variables to be in a `while` loop. Sometimes, both the beginning and ending
+  conditions will be equal, in which case, the loop will actually never run! The simplest way out of this may be a `do while` loop instead.
 
 ### Q143 - Reorder List
 
-**Need to add notes here.**
+- Instead of using extra memory, you can combine several easy operations to achieve the desired order.
+  - Find the middle of the list (slow/fast pointer)
+  - Reverse the second half of the list
+  - Merge the two halves together to obtain result
 
 ### Q146 - LRU Cache
 
-**Need to add notes here.**
+- You can combine two data structures (doubly linked list and hashmap) to achieve good runtime and also queue-like ability.
+  The doubly linked list holds the key-value pairs, and the hashmap points from the key to the respective node.
+- You can eliminate some edge cases in doubly linked lists by always keeping a head and tail node. All operations will be done
+  to whatever is adjacent to these two nodes, so no dealing with null nodes.
 
 ### Q190 - Reverse Bits
 
-**Need to add notes here.**
+- Use a bitmask. Add a 1 each time both number and mask are a 1. Shift mask and result left to iterate over bits.
 
 ### Q191 - Number of 1 Bits
 
-**Need to add notes here.**
+- Same as Q190 but even simpler. Increment count whenever bitmask and number are 1. Keep shifting.
 
 ### Q200 - Number of Islands
 
@@ -312,23 +337,27 @@ Too easy, nothing to add.
 
 ### Q202 - Happy Number
 
-**Need to add notes here.**
+- The simple solution is to keep a hashset, but you can actually solve this with Floyd's cycle detection.
+  The *slow pointer* will move one number ahead, and the *fast pointer* will move two numbers ahead.
 
 ### Q203 - Remove Linked List Elements
 
-**Need to add notes here.**
+- Edge case where the head node is to be removed. Simply advance to the first node that is to be kept.
+  You could also use a dummy head.
+- Removal is as simple as pointing to the next next.
 
 ### Q206 - Reverse Linked List
 
-**Need to add notes here.**
+- One of the recursive approaches is to keep stacking the function until you've reached the end, then change pointers
+  as you pop. Note that the iterative solution is actually better in terms of space used.
 
 ### Q215 - Kth Largest Element in an Array
 
-**Need to add notes here.**
+- Very simple use of a min-heap. Just pop the top whenever size goes over capacity.
 
 ### Q217 - Contains Duplicate
 
-**Need to add notes here.**
+- Sort to group duplicates together, or use a hashset.
 
 ### Q225 - Implement Stack using Queues
 
@@ -338,11 +367,14 @@ Too easy, nothing to add.
 
 ### Q230 - Kth Smallest Element in a BST
 
-**Need to add notes here.**
+- Simple enough to use a max-heap and pop as size goes over capacity, as you iterate over nodes.
+- But you should actually take advantage of the BST property and do in-order traversal, and return when you get to the Kth element.
+  Refer to Q94 for in-order traversal.
 
 ### Q232 - Implement Queue using Stacks
 
-**Need to add notes here.**
+- Whenever you need to push in an item, move all of the stack to another stack, put new item in main stack,
+  push the temporary stack back onto main. Honestly it helps to think of what you would do by hand if asked to do this.
 
 ### Q234 - Palindrome Linked List
 
@@ -352,43 +384,49 @@ Too easy, nothing to add.
 
 ### Q237 - Delete Node in a Linked List
 
-**Need to add notes here.**
+- This is a misleading question but basically rather than removing a node, you shift every element after it up by one.
+  So it is more like *effectively* deleting a node.
 
 ### Q257 - Binary Tree Paths
 
-**Need to add notes here.**
+- Not much to say, straightforward stuff.
 
 ### Q258 - Add Digits
 
-**Need to add notes here.**
+- Straightforward naive solution, but this is devisable in constant time mathematically.
 
 ### Q268 - Missing Number
 
-**Need to add notes here.**
+- Sorting is an obvious way to make the result, well, obvious.
+- The formula `n(n+1)/2` is still useful, keep it in mind.
+- Bit manipulation using `XOR`.
 
 ### Q278 - First Bad Version
 
-**Need to add notes here.**
+- Once again, to minimize overhead when something is *sorted*, even if that thing is sorted **chronologically** in this case,
+  binary search helps.
 
 ### Q322 - Coin Change
 
-**Need to add notes here.**
+- Classic DP problem. You build up to the target amount, and at each step, you pick the minimum amount of ways among the coins.
+  The indices are sums, the values are the minimum coins needed to get to that sum.
+- You can also solve it with a recursive backtrack using memoization. You go top-down on this one though.
 
 ### Q338 - Counting Bits
 
-**Need to add notes here.**
+- Count up using `&` bitmask checking bit by bit.
 
 ### Q344 - Reverse String
 
-**Need to add notes here.**
+- Straightforward with two pointers, but consider that it may be more readable to use a while loop.
 
 ### Q345 - Reverse Vowels of a String
 
-**Need to add notes here.**
+- Pretty usual two pointer approach where on each iteration you move both pointers until they are at a valid index.
 
 ### Q347 - Top K Frequent Elements
 
-**Need to add notes here.**
+- Go step by step, solving subproblems. Other than that, it's the usual heap question with a custom functor comparison.
 
 ### Q359 - Logger Rate Limiter
 
@@ -399,79 +437,98 @@ Too easy, nothing to add.
 
 ### Q366 - Find Leaves of Binary Tree
 
-**Need to add notes here.**
+- This can be solved iteratively both destructively and by keeping a hashset.
+- However, recursion is much simpler, and the intuition is basically that the current level is determined by
+  the maximum height of either the left or right branch. Once the current height is found, the node can be added to its
+  respective vector index.
 
 ### Q369 - Plus One Linked List
 
-**Need to add notes here.**
+- Could have solved this one with constant space...
 
 ### Q371 - Sum of Two Integers
 
-**Need to add notes here.**
+- To do addition without the `+` operator, you use `XOR` for addition and `AND` for carry.
+- In certain languages, a bitmask is necessary. It has something to do with overflows, but I'm not sure what yet.
 
 ### Q382 - Linked List Random Node
 
-**Need to add notes here.**
+- You simply load the list into an array and pick from there with `((float) rand() / RAND_MAX) * list.size()`.
+  But if the height is unknown, etc., you need *reservoir sampling*.
 
 ### Q387 - First Unique Character in a String
 
-**Need to add notes here.**
+- Simple use of a basic frequency table. Do note that for such simple uses, vectors are much faster than maps/sets.
 
 ### Q389 - Find the Difference
 
-**Need to add notes here.**
+- Either frequency table or bit manipulation using XOR.
 
 ### Q394 - Decode String
 
 - You can convert `char`s to `int` by doing `charValue - '0'`.
 - Recursive: Mostly straightforward, just beware of your loop conditionals.
   This approach takes away the complexity of managing your own stacks.
+  (Also, there's actually a much more concise recursive solution)
 - Iterative: Solving a recursive problem with iteration usually involves stacks,
   but beware that you may even need to manage multiple stacks for different things.
 
 ### Q412 - Fizz Buzz
 
-**Need to add notes here.**
+- Coding this so that the strings are concatenated makes it more extensible.
+  You could even go overboard have a map of int to string pairs and just iterate over keys to check divisibility.
 
 ### Q414 - Third Maximum Number
 
-**Need to add notes here.**
+- When you need to get an iterator to the last item, use `rbegin`. For a reference, use `back`.
+- You can keep a fixed-size ordered set as a heap with no duplicates.
 
 ### Q415 - Add Strings
 
-**Need to add notes here.**
+- Standard grade-school addition but be careful with data structure sizes.
+  `size_t` is unsigned, so subtracting directly from it can be a very bad idea.
 
 ### Q423 - Reconstruct Original Digits from English
 
-**Need to add notes here.**
+- More like a brain twister, you need to notice that certain numbers have unique characters and such.
+  Getting them out of the way sooner means you get the correct result at the end.
 
 ### Q509 - Fibonacci Number
 
-**Need to add notes here.**
+- You can solve this in many ways (DP/Recursion+Memoization), but honestly just keep the previous two values
+  in a variable for constant space.
 
 ### Q528 - Random Pick with Weight
 
-**Need to add notes here.**
+- You can set up a probability table using prefix sums. Add the last weight plus the current weight and append to buckets.
+  When picking randomly among the buckets, you can actually use binary search to optimize further.
 
 ### Q540 - Single Element in a Sorted Array
 
-**Need to add notes here.**
+- You hear the word "sorted", you need to think binary search. You can find even the non-duplicate item with binary search.
+- Some rules of thumb regarding the binary search conditional:
+  - If returning inside loop, `low <= high` may be better.
+  - If reducing but returning outside, `low < high` may be better.
+  - If discarding `mid` for next iteration, `low <= high` may be better.
+  - If keeping `mid` for next iteration, `low < high` may be better.
+  - If you don't discard `mid`, you may end up in an infinite loop, be careful.
 
 ### Q541 - Reverse String II
 
-**Need to add notes here.**
+- Straightforward but make sure you think it through before coding.
 
 ### Q557 - Reverse Words in a String III
 
-**Need to add notes here.**
+- Use a stack to reverse char order until you hit a delimiter.
 
 ### Q559 - Maximum Depth of N-ary Tree
 
-**Need to add notes here.**
+- Iterative solution uses BFS with `pair` to keep track of depth.
+  Recursive solution is pretty standard as well.
 
 ### Q637 - Average of Levels in Binary Tree
 
-**Need to add notes here.**
+- Instead of keeping track of levels in BFS pairs, it's better to use the level traversal trick in Q111.
 
 ### Q680 - Valid Palindrome II
 
@@ -481,15 +538,16 @@ Too easy, nothing to add.
 
 ### Q696 - Count Binary Substrings
 
-**Need to add notes here.**
+- Very tricky intuition. Keep two pointers, `prev` and `cur`. Whenever a transition to the other group is made,
+  add to count `min(prev, cur)`, and move `cur` to `prev` then reset `cur` to 1.
 
 ### Q703 - Kth Largest Element in a Stream
 
-**Need to add notes here.**
+- Standard min-heap question.
 
 ### Q746 - Min Cost Climbing Stairs
 
-**Need to add notes here.**
+- Pretty much the same as the original *climbing stairs*, only now the values are mapped to the minimum cost.
 
 ### Q811 - Subdomain Visit Count
 
@@ -501,40 +559,48 @@ Too easy, nothing to add.
 
 ### Q876 - Middle of the Linked List
 
-**Need to add notes here.**
+- Classic two pointer approach where one is slow and the other is fast.
+  Once the fast one reaches the end, the slow one is at the middle (the same one that is `size / 2`).
 
 ### Q938 - Range Sum of BST
 
 - BST (Binary Search Tree) lets you discard paths that do not meet constraints.
+  It's basically a tree property that lets you naturally perform binary search.
 - DFS uses either a stack or recursion, and BFS uses queues.
 
 ### Q989 - Add to Array-Form of Integer
 
-**Need to add notes here.**
+- Another grade-school addition problem.
 
 ### Q1005 - Maximize Sum Of Array After K Negations
 
-**Need to add notes here.**
+- The intuition is to keep all values in a min-heap. For `k` times, you pop the minimum item,
+  and push back its negative. If the new minimum is "different", that's fine.
+  If the new minimum is the "same" element, it'll be negated once again to return to its original sign.
+  Then after having done the optimal negations, you just sum up everything in the heap.
 
 ### Q1051 - Height Checker
 
-**Need to add notes here.**
+- Simply construct the sorted version and compare with original.
 
 ### Q1119 - Remove Vowels from a String
 
-**Need to add notes here.**
+- Super easy. Skip concatenation whenever a vowel is encountered.
 
 ### Q1408 - String Matching in an Array
 
-**Need to add notes here.**
+- For string matching, you either brute-force your way through, or you use something like KMP.
 
 ### Q1985 - Find the Kth Largest Integer in the Array
 
-**Need to add notes here.**
+- Just a standard min-heap problem.
+- When comparing strings that are actually integers, you don't have to parse the integer.
+  If their lengths aren't equal, the longer one is the bigger number.
+  If the length are equal, a simple `a > b` to check lexicographically will suffice.
 
 ### Q2095 - Delete the Middle Node of a Linked List
 
-**Need to add notes here.**
+- As simple as finding the middle really.
 
 ### Q2099 - Find Subsequence of Length K With the Largest Sum
 
