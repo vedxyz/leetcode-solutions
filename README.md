@@ -900,3 +900,30 @@ When code runs in a fashion like `1 + 2 + ... + n`, the runtime is still `O(N^2)
 - NP problems have solutions that can be verified in polynomial time.
 - NP-complete problems are those that can have other NP problems reduced to them.
 - It is unknown whether NP-complete problems can be solved in polynomial time.
+
+## Mock Interview with a Googler! - Feedback
+
+- It's always a good idea to display your interest in CS/Engineering, even as you introduce yourself.
+- Start by clarifying things, such as input types, overflows and limits, and special cases such as negative numbers or unequal lengths, etc.
+- Immediately come up with your own examples, don't just rely on the ones provided.
+- When you say something, you're going to have to justify it. For example, to say something is "complicated" will urge
+  the interviewer to question you as to why.
+- Preferably don't throw all your code into a single function, make things modular and ideally functions should only be achieving one purpose.
+- Taking initiative is a good sign. Proposing to do a dry-run without being prompted is good. Make sure to do a dry-run for both an input
+  that passes and one that fails. In other words, show the different paths that the code could take.
+- Try to come up with concise ways to represent structures on the document, such as by representing a frequency table vector as a map:
+  `{1: 2, 7: 3, 9: 1, 8: -1}`.
+- If you don't precisely understand what the interviewer is asking, it's better to ask for clarification rather than roll with a
+  possibly incorrect solution.
+- Don't overcomplicate the complexity analysis. State what `N` is then just describe it in terms of `N`.
+- It's a good idea to talk about scalability as you're coming up with an algorithm.
+- Try not to focus on a specific time complexity, at least not vocally. Simply go for problem solving instead.
+- When you're not able to hash a structure, you might be able to serialize it as a string instead and use that as a hashable key.
+- Keep in mind that you can prune unnecessary data to optimize space. For example, you don't need to store tons of indices if they're
+  invalidated once there are multiple of them.
+- Slow down and spend a bit more time to consider potential drawbacks of the individual design choices you make.
+- Always state/ask about assumptions before making them.
+- Try to have multiple ways in mind to do a thing if possible.
+- Be careful with typos, it's better not to make them.
+- Asking a decent balance of technical and social questions at the end is a good idea.
+- It might be a good idea to write down the general steps of your algorithm, so that they're there when you need to code.
