@@ -545,6 +545,11 @@ Too easy, nothing to add.
 
 - Standard min-heap question.
 
+### Q706 - Design HashMap
+
+- When you've got `int`s as keys, a hash function is as simple as using a modulo.
+  Preferably do it with a table size that is a prime number to reduce collisions.
+
 ### Q746 - Min Cost Climbing Stairs
 
 - Pretty much the same as the original *climbing stairs*, only now the values are mapped to the minimum cost.
