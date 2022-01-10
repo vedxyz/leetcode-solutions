@@ -609,7 +609,12 @@ Too easy, nothing to add.
 
 ### Q2099 - Find Subsequence of Length K With the Largest Sum
 
-**Need to add notes here.**
+- Note that subsequences do not consist of adjacent elements, but apparently need to preserve
+  original order. This is best achieved with a combination of heap and hashmap.
+  The max-heap keeps the top elements, which are counted into a hashmap.
+  Then, the original numbers are iterated, in order, and are added into result based on
+  hashmap findings. Thus, we leverage the original array's order and decide on insertion
+  with another data structure.
 
 ## Cracking the Coding Interview - Notes
 
