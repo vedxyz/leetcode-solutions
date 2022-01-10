@@ -70,6 +70,13 @@ to a one-pass. Lookup is made constant in this way.
 
 - Nothing much to add. Just remember to consider edge cases.
 
+### Q15 - 3Sum
+
+- If you deduce the BCR to be quadratic, it may be a good idea to sort the input.
+  Doing so makes this problem an extension to the two sum two pointer approach.
+- You hold the first item constant, and move the other two to find matches.
+- Since the input is sorted, it's easy to skip duplicates by skipping equivalent adjacent elements.
+
 ### Q19 - Remove Nth Node From End of List
 
 - Again, dummy nodes help but be careful picking `dummy->next` instead of `dummy.next`.
@@ -132,6 +139,12 @@ Too easy, nothing to add.
     Thus, when an element is popped, the top element is one before the largest verified substring index at that time.
   - By pushing invalid indices when the stack becomes empty, we make sure there's always a "one before valid index" element.
 - It's sometimes possible to accomplish wizardry by running an algorithm forwards then backwards.
+
+### Q33 - Search in Rotated Sorted Array
+
+- Again, binary search is the way to go. To determine which side to look next, examine the patterns.
+  In a rotated sorted array, one side is going to be properly sorted still.
+  Do a classic binary search on that side and decide from there.
 
 ### Q35 - Search Insert Position
 
@@ -312,6 +325,29 @@ Too easy, nothing to add.
 - You can eliminate some edge cases in doubly linked lists by always keeping a head and tail node. All operations will be done
   to whatever is adjacent to these two nodes, so no dealing with null nodes.
 
+### Q152 - Maximum Product Subarray
+
+- The intuition is similar to Kadane's algorithm, but you have to reconsider when you're going to reset the current product.
+  If the product is 0, it will never change, so discard it. To deal with negatives, you do two passes: one from the left
+  and one from the right. This way, you will have optimized the negative numbers as well.
+- To do it in a single pass, you keep two variables, `maxCurrent` and `minCurrent`. Since these two
+  can change places because of a negative number, you will need to consider both while finding the real maximum.
+
+### Q153 - Find Minimum in Rotated Sorted Array
+
+- Even with a rotation, binary search is still viable. You need to examine the patterns and play
+  around with a few samples. The boundaries of the current selection can direct which side to go next.
+- In binary search, the middle element isn't guaranteed to be the same as when you calculate it from the container size.
+  If you need it to be consistent, it may be a good idea to increment the index depending on parity.
+
+### Q167 - Two Sum - Input Array Sorted
+
+- Think it through step by step, and you'll get it.
+  Many of the steps are made redundant by the input property anyway.
+- The usual way to overcome overflow is to subtract rather than add.
+  For example, `left + right == target` may instead be `left == target - right`.
+  Though this may not apply when negative values are involved.
+
 ### Q190 - Reverse Bits
 
 - Use a bitmask. Add a 1 each time both number and mask are a 1. Shift mask and result left to iterate over bits.
@@ -386,6 +422,17 @@ Too easy, nothing to add.
 
 - This is a misleading question but basically rather than removing a node, you shift every element after it up by one.
   So it is more like *effectively* deleting a node.
+
+### Q238 - Product of Array Except Self
+
+- The intuition here is to build a *running array*. In fact, build it from both left and right.
+  Notice that for each index, you can use the running products to get the result.
+  To build the arrays, you start traversing from the left, and then from the right, multiplying
+  the previous product with the previous missing item.
+  To generalize, a *running array* may be described as an array that contains the result up to that point,
+  and the next index can be obtained by modifying the previous index.
+- You can use the output array as a space to build a running array, and use a single variable to
+  hold the other running product, to achieve constant space.
 
 ### Q257 - Binary Tree Paths
 
