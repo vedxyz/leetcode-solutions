@@ -46,6 +46,10 @@ to a one-pass. Lookup is made constant in this way.
   just simulating a merge operation with pointers and setting a breaking condition
   such that what you are left with is the answer.
 
+### Q5 - Longest Palindromic Substring
+
+- Refer to Q647 notes for palindromic substrings.
+
 ### Q7 - Reverse Integer
 
 - When working with the individual digits of a number, modulo and integer division are your
