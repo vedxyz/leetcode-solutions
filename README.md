@@ -471,6 +471,14 @@ Too easy, nothing to add.
 - You can use the output array as a space to build a running array, and use a single variable to
   hold the other running product, to achieve constant space.
 
+### Q242 - Valid Anagram
+
+- Classic situation where you use a frequency table to check if equal.
+- You could also sort and compare since sorted anagrams become identical.
+- A hash table is a more generic solution as it can take unicode characters as well.
+- It might be a good idea to look for *early returns* on some validation questions,
+  since once you encounter, say, a negative frequency in this case, you can't recover from it.
+
 ### Q257 - Binary Tree Paths
 
 - Not much to say, straightforward stuff.
@@ -613,6 +621,18 @@ Too easy, nothing to add.
 ### Q637 - Average of Levels in Binary Tree
 
 - Instead of keeping track of levels in BFS pairs, it's better to use the level traversal trick in Q111.
+
+### Q647 - Palindromic Substrings
+
+- There are two ways to approach this kind of palindrome question:
+  - **Dynamic Programming:** Keep a 2d matrix as a boolean store for indices where there is a palindrome.
+    For two index pointers `i, j`, the vector `dp[i][j]` would be mapped to that substring.
+    Since there are two base cases, you get those out of the way and work out all the other lengths
+    up to the length of the string.
+  - **Expand Around Center:** For any index, you can check if the characters to the left and right are equal.
+    Once you find an unequality, you can break out and return the count so far.
+    Note that this applies differently for an odd or even palindrome. A single index is enough for an odd
+    palindrome, but when checking even palindromes you would need two indices `i` and `i+1`.
 
 ### Q680 - Valid Palindrome II
 
