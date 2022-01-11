@@ -168,6 +168,10 @@ Too easy, nothing to add.
   On each level of the recursion, the current item is swapped with an element on the right.
   The base case occurs when there are no elements left to swap.
 
+### Q48 - Rotate Image
+
+- Straightforward problem, it's just kinda tricky to get all the indices right.
+
 ### Q53 - Maximum Subarray
 
 - Following Kadane's algorithm, you need to discard any current sum that is negative, as it will never contribute positively.
@@ -179,6 +183,13 @@ Too easy, nothing to add.
 - Determine when you are going to add the interval as is, and when you are going to merge.
   Setting up a conditional for this is easy. Then, determine what you would need to do to merge two intervals.
   Step by step.
+
+### Q57 - Insert Interval
+
+- Instead of dealing with edge case hell by modifying the current array, start a new one and weave the items into it
+  as you go along. Dealing with intervals that need to be merged is easier this way.
+  If an interval is to be merged, only its endpoint changes to the max option.
+  If there is no overlap, it's just added as is.
 
 ### Q62 - Unique Paths
 
@@ -228,6 +239,15 @@ Too easy, nothing to add.
   For every node, you traverse left and push to stack until you can't anymore.
   Then pop from the stack, visit the node, move to the right node, repeat.
 
+### Q98 - Validate Binary Search Tree
+
+- You need to keep a lower and higher limit to compare against. Adjacent nodes aren't enough to validate.
+- Another solution would be to do an in-order traversal since BST's will be ordered in that case.
+
+### Q100 - Same Tree
+
+- Recursion. Just gotta take care of the base cases.
+
 ### Q101 - Symmetric Tree
 
 - Simple stuff recursively. Iteratively, it works with a BFS-like queue where the elements are `pair`s of supposedly symmetric nodes.
@@ -239,6 +259,19 @@ Too easy, nothing to add.
 ### Q104 - Maximum Depth of Binary Tree
 
 - Recursion easy, iteration uses `pair` for depth.
+
+### Q105 - Construct Binary Tree from Preorder and Inorder Traversal
+
+- A pre-order array is going to have the root node at the beginning.
+  An in-order array is going to have its left and right subtrees to the left and right of its index in the array.
+  So, you get the root from the pre-order array and find it in the in-order array, and construct subtrees recursively.
+- As usual, when you need to keep referring back to an array, to make lookup constant, use a hashtable.
+
+### Q106 - Construct Binary Tree from Postorder and Inorder Traversal
+
+- Exact same logic as Q105 above. However, note that the subtrees need to be constructed according to the
+  order of the array besides the in-order one. In other words, Q105 needs to go left->right but Q106
+  needs to right->left, since that's how the trees will look in their respective pre/post-order arrays.
 
 ### Q107 - Binary Tree Level Order Traversal II
 
@@ -400,6 +433,10 @@ Too easy, nothing to add.
 - You can keep rotating a single queue to get a stack.
   You would arrive at this solution by writing down the real state of the queue
   and also the ideal stack representation, and compare to see how you might accomplish it.
+
+### Q226 - Invert Binary Tree
+
+- Recursion. It actually doesn't matter whether you do the swap bottom-up or top-down.
 
 ### Q230 - Kth Smallest Element in a BST
 
