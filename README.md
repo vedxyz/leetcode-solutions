@@ -195,6 +195,10 @@ Too easy, nothing to add.
   If an interval is to be merged, only its endpoint changes to the max option.
   If there is no overlap, it's just added as is.
 
+### Q58 - Length of Last Word
+
+- Trivial. Just start from the end and think about edge cases.
+
 ### Q62 - Unique Paths
 
 - Dynamic programming is good for these kinds of counting problems.
